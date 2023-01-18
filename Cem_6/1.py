@@ -17,43 +17,64 @@ actions = {
 }
 
 
-def sort_s(string):
-    spl = string.split()
+# Ищем скобки, обосабливаем в списки
+def parse(exp_1):
+    pr_list = []
+    i = 0
+
+    while i < len(exp_1):
+        if exp_1[i] == "(":
+            # Если дальше, с текущего индекса,
+            # есть ещё открывающая скобка
+            # вызываем рекурсивно parse
+            if "(" in exp_1[i + 1:]:
+                exp_1 = exp_1[:i + 1] + parse(exp_1[i + 1:])
+            n_2 = exp_1.index(")", i)
+            pr_list.append(exp_1[i + 1: n_2])
+            i = n_2
+        else:
+            pr_list.append(exp_1[i])
+        i += 1
+    return pr_list
 
 
-fn_spl = []
-i = 0
-while i < len(spl):
-    if spl[i] == "(":
-        bracket = spl.index(")")
-fn_spl.append(spl[i + 1:bracket])
-i = bracket
-else:
-fn_spl.append(spl[i])
-i += 1
-return fn_spl
+# Результирующая функция
+# TODO доработать
+def decision(final_list: list):
 
-
-def culc(any_list):
-    for i, v in enumerate(any_list):
+    # Проверка на список, раскрытие скобок
+    for i, v in enumerate(final_list):
         if isinstance(v, list):
-            any_list[i] = culc(v)
+            # Если список, вызываем рекурсивно decision
+            final_list[i] = decision(v)
+
+    # Получение индексов приоритетных операций
+    ind_list = [i for i, v in enumerate(final_list) if v in "*/"]
+
+    # Работа с приоритетными операциями
+    while ind_list:
+        k = ind_list[0]
+        a, s, b = final_list[k - 1: k + 2]
+        final_list.insert(k - 1, actions[s](a, b))
+        del final_list[k:k + 3]
+        ind_list = [i for i, v in enumerate(final_list) if v in "*/"]
+
+    # Работа с оставшимися операциями
+    while len(final_list) > 1:
+        a, s, b = final_list[:3]
+        del final_list[:3]
+        final_list.insert(0, actions[s](a, b))
+    
+    return final_list[0]
 
 
-ch = [i for i, v in enumerate(any_list) if v in '*/']
-while ch:
-    sm = ch[0]
-a, b, c = any_list[sm - 1:sm + 2]
-any_list.insert(sm - 1, actions[b](a, c))
-del any_list[sm:sm + 3]
-ch = [i for i, v in enumerate(any_list) if v in '*/']
-while len(any_list) > 1:
-    a, b, c = any_list[:3]
-del any_list[:3]
-any_list.insert(0, actions[b](a, c))
-return any_list[0]
+exp = "4 * 3 - 1 / 9 - 7 * -1".split()
+# exp = "-2 + ( 4 / 2 - 7 + 8 * 7 ) * 3".split()
+# exp = "( 12 + 8 ) * 3 - 11 / 2".split()
+# exp = "11 / 2 - ( 12 + 8 ) * 3".split()
+# exp = "5 + 11 / 2 - ( 12 + 8 ) * 3 - 12".split()
+# exp = "4 * ( 3 - 1 ) / ( 9 - 7 ) * -1".split()
+# exp = "8 + 2 * 4 + ( 6 + ( 2 - 3 * 7 + ( 77 - 11 ) ) * 2 )".split()
 
-d = input('введите цифры:')
-
-print(sort_s(d))
-print(culc(sort_s(d)))
+print(parse(exp))
+print(decision(parse(exp)))
