@@ -2,7 +2,7 @@
 # значения которых больше предыдущего элемента. Use comprehension.
 
 from random import sample
-len_list = int(input("Ведите кол-во чисел в рандомном списке: "))
+len_list = int(input("Введите кол-во чисел в рандомном списке: "))
 my_list = [i for i in sample(range(1, len_list*2), len_list)]
 print("Рандомный список: ", my_list)
 sort_list = [my_list[i]
