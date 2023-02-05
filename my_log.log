@@ -1,2 +1,23 @@
 05-02-2023 14:17:52 - main - INFO - <module> - start program
 05-02-2023 14:17:57 - user_interface - INFO - select_num_type - Stop program
+05-02-2023 14:22:13 - main - INFO - <module> - start program
+05-02-2023 14:22:25 - calc_operations - INFO - actions - 5.0 + 8.0 = 13.0
+05-02-2023 14:22:25 - user_interface - INFO - operation_for_rational_numbers - finish program
+05-02-2023 14:22:34 - main - INFO - <module> - start program
+05-02-2023 14:22:48 - calc_operations - INFO - actions - 45.0 - 12.0 = 33.0
+05-02-2023 14:22:48 - user_interface - INFO - operation_for_rational_numbers - finish program
+05-02-2023 14:22:56 - main - INFO - <module> - start program
+05-02-2023 14:23:05 - calc_operations - INFO - actions - 12.0 * 65.0 = 780.0
+05-02-2023 14:23:05 - user_interface - INFO - operation_for_rational_numbers - finish program
+05-02-2023 14:23:14 - main - INFO - <module> - start program
+05-02-2023 14:23:25 - calc_operations - INFO - actions - 45.0 / 9.0 = 5.0
+05-02-2023 14:23:25 - user_interface - INFO - operation_for_rational_numbers - finish program
+05-02-2023 14:23:28 - main - INFO - <module> - start program
+05-02-2023 14:23:43 - calc_operations - INFO - actions - 5.0 ** 2.0 = 25.0
+05-02-2023 14:23:43 - user_interface - INFO - operation_for_rational_numbers - finish program
+05-02-2023 14:23:50 - main - INFO - <module> - start program
+05-02-2023 14:24:04 - calc_operations - INFO - actions - 5.0 root 5.0 = 1.379729661461215
+05-02-2023 14:24:04 - user_interface - INFO - operation_for_rational_numbers - finish program
+05-02-2023 14:24:11 - main - INFO - <module> - start program
+05-02-2023 14:24:21 - calc_operations - INFO - actions - 45.0 % 8.0 = 5.0
+05-02-2023 14:24:21 - user_interface - INFO - operation_for_rational_numbers - finish program
