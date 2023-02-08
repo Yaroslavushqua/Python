@@ -17,7 +17,7 @@ def show_main_menu():
             view.print_message(result3)
         elif menu_num == '4': # удаление работников
             data = view.insert_data('Поиск работника для удаления:')
-            result4 = model.delete_contanct(data)
+            result4 = model.delete_contact(data)
             view.print_message(result4)
         elif menu_num == '5': # выход из программы
         # break
