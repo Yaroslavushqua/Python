@@ -58,4 +58,55 @@ def reset():
     return
 
 def set_playerX():
-    
+    global player_mode
+    global bot_mode
+    global status
+    reset()
+    player_mode = 'X'
+    bot_mode = 'O'
+    status = 'ХОДИТЕ ЗА ' + player_mode
+    return
+
+def set_player0():
+    global player_mode
+    global bot_mode
+    global status
+    reset()
+    player_mode = 'O'
+    bot_mode = 'X'
+    status = 'ХОДИТЕ ЗА ' + player_mode
+    return
+
+def do_turn(mode, col, row):
+    global turn_count
+    global player_mode
+    global bot_mode
+    global table
+    global status
+    x = col
+    y = row
+    if table[y][x] != ' ':
+        status = 'ЗАНЯТО'
+    else:
+        turn_count += 1
+        table[y][x] = mode
+
+    win = win_condition(mode)
+    if win == ' ':
+        status = "НИЧЬЯ"
+    elif win == player_mode:
+        status = "ИГРОК ВЫИГРАЛ"
+    elif win == bot_mode:
+        status = "БОТ ВЫИГРАЛ"
+    else:
+        status = 'ХОДИТЕ ЗА ' + player_mode
+
+    return win
+
+def bot_turn():
+    global table
+    for x in range(0,3):
+        for y in range(0,3):
+            if table[y][x] == ' ':
+                return do_turn(bot_mode, x, y)                
+    return
