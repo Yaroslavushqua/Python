@@ -43,11 +43,7 @@ async def button(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     await context.bot.edit_message_text(chat_id=query.message.chat.id, message_id=query.message.id, text=model.get_status(), reply_markup=model.get_table())
 
 
-TOKEN = None
-with open("token.txt") as f:
-    TOKEN = f.read().strip()
-
-app = ApplicationBuilder().token(TOKEN).build()
+app = ApplicationBuilder().token('6061800216:AAF7F089K22hmbiGjyclU0IVf3ej6gLLzw8').build()
 
 
 app.add_handler(CommandHandler("help", help))
